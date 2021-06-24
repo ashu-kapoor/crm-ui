@@ -1,0 +1,60 @@
+.home-left {
+  display: table-cell;
+  height: 100%;
+  position: relative;
+  vertical-align: middle;
+}
+
+.home-right {
+  display: table-cell;
+  vertical-align: top;
+  background-color: #d8dde6;
+  width: 50%;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 10px;
+}
+
+.home-wrapper {
+  display: table;
+  width: 100%;
+  background-color: #f4f6f9;
+  padding: 0px;
+  margin: 0 auto;
+  font-size: 0.8125rem;
+}
+
+.home-main {
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.home-footer {
+  position: relative;
+  height: 24px;
+  width: 100%;
+  clear: both;
+  text-align: center;
+}
+
+.Login-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Login-logo {
+    animation: Login-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes Login-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

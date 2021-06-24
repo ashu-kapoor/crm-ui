@@ -1,0 +1,19 @@
+.card {
+  background-color: rgb(236, 236, 236);
+  padding: 20px;
+  margin: 5px;
+  border: 1px solid rgb(230, 227, 227);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: 200px;
+  min-height: 200px;
+  box-shadow: rgba(161, 159, 159, 0.774) 0px 4px 12px;
+}
+
+.login-card-style {
+  max-width: 380px;
+  min-height: 90%;
+}
