@@ -8,10 +8,12 @@ const FormField = ({
   changeHandler,
   blurHandler,
   isInvalid,
+  displayInRow,
+  disabled,
 }) => {
   const filedClasses = `${classes["form-control"]} ${
     isInvalid ? `${classes["invalid"]}` : ""
-  }`;
+  } ${displayInRow ? classes["form-control-row"] : ""}`;
   return (
     <div className={filedClasses}>
       <label htmlFor={id}>{labelText}</label>
@@ -21,6 +23,7 @@ const FormField = ({
         value={fieldValue}
         onChange={changeHandler}
         onBlur={blurHandler}
+        disabled={disabled}
       />
     </div>
   );

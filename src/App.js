@@ -6,6 +6,7 @@ import Login from "./pages/Login/Login";
 import AllContacts from "./pages/AllContacts";
 import AllProducts from "./pages/AllProducts";
 import AllUsers from "./pages/AllUsers";
+import ContactsDetailPage from "./pages/ContactsDetailPage";
 
 function App() {
   return (
@@ -17,7 +18,9 @@ function App() {
         <Route path="/contacts" exact>
           <AllContacts />
         </Route>
-        <Route path="/contacts/:contactId"></Route>
+        <Route path="/contacts/:contactId">
+          <ContactsDetailPage />
+        </Route>
         <Route path="/products" exact>
           <AllProducts />
         </Route>

@@ -1,0 +1,90 @@
+.container {
+  background-color: rgb(236, 236, 236);
+  padding: 1px;
+  margin: 5px;
+  border: 1px solid rgb(230, 227, 227);
+  border-radius: 5px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 200px;
+  box-shadow: rgba(161, 159, 159, 0.774) 0px 4px 12px;
+  width: 85%;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.container-header {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 10px;
+  background-color: rgb(111 35 43);
+  font-size: 1.5rem;
+  color: white;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+
+.container .title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.container .title div {
+  margin-left: 5px;
+  font-size: 1.2rem;
+}
+
+.container .title img {
+  width: 2.5rem;
+}
+
+.container section {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.container .button-new {
+  border: none;
+  margin: 2px;
+  cursor: pointer;
+  width: 1.5rem;
+  padding: unset;
+  background-color: rgb(111 35 43);
+}
+
+.container .button-edit {
+  border: none;
+  margin: 2px;
+  cursor: pointer;
+  width: 1.5rem;
+  padding: unset;
+  background-color: rgb(111 35 43);
+}
+
+.container button img {
+  border: none;
+}
+
+.container footer {
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgb(111 35 43);
+  margin: 1px;
+  padding: 2px;
+  width: 100%;
+  font-size: 0.9rem;
+  text-align: center;
+  align-self: flex-end;
+}

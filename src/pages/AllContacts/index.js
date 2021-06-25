@@ -1,6 +1,7 @@
 import Table from "../../components/ui/common/Table";
 import NavWrapper from "../../components/layout/NavWrapper";
-import HeaderCard from "../../components/ui/common/HeaderCard";
+import Card from "../../components/ui/common/Card";
+import contactLogo from "../../images/contact.svg";
 
 //DUMMY DATA
 const customers = {
@@ -38,7 +39,17 @@ const headerMap = {
 const AllContacts = () => {
   return (
     <NavWrapper>
-      <HeaderCard title="Contacts">
+      <Card
+        showHeader={true}
+        showFooter={true}
+        showNewButton={false}
+        showEditButton={false}
+        headerImage={contactLogo}
+        isSticky={true}
+        footerContent={<div>Pagination Placeholder</div>}
+        headerTitle="Contacts"
+        widthToFull={true}
+      >
         <Table
           data={customers}
           linkHeader="Name"
@@ -46,7 +57,7 @@ const AllContacts = () => {
           headerMap={headerMap}
           linkTo="/contacts/:contactId"
         />
-      </HeaderCard>
+      </Card>
     </NavWrapper>
   );
 };

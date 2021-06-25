@@ -1,6 +1,7 @@
 import Table from "../../components/ui/common/Table";
 import NavWrapper from "../../components/layout/NavWrapper";
-import HeaderCard from "../../components/ui/common/HeaderCard";
+import Card from "../../components/ui/common/Card";
+import userLogo from "../../images/users.svg";
 
 //DUMMY DATA
 const users = {
@@ -34,7 +35,17 @@ const headerMap = {
 const AllUsers = () => {
   return (
     <NavWrapper>
-      <HeaderCard title="Users">
+      <Card
+        showHeader={true}
+        showFooter={true}
+        showNewButton={false}
+        showEditButton={false}
+        headerImage={userLogo}
+        isSticky={true}
+        footerContent={<div>Pagination Placeholder</div>}
+        headerTitle="Users"
+        widthToFull={true}
+      >
         <Table
           data={users}
           linkHeader="Email"
@@ -42,7 +53,7 @@ const AllUsers = () => {
           headerMap={headerMap}
           linkTo="/users/:userId"
         />
-      </HeaderCard>
+      </Card>
     </NavWrapper>
   );
 };

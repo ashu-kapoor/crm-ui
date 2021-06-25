@@ -1,6 +1,7 @@
 import Table from "../../components/ui/common/Table";
 import NavWrapper from "../../components/layout/NavWrapper";
-import HeaderCard from "../../components/ui/common/HeaderCard";
+import Card from "../../components/ui/common/Card";
+import productLogo from "../../images/products.svg";
 
 //DUMMY DATA
 const products = {
@@ -34,7 +35,17 @@ const headerMap = {
 const AllProducts = () => {
   return (
     <NavWrapper>
-      <HeaderCard title="Products">
+      <Card
+        showHeader={true}
+        showFooter={true}
+        showNewButton={false}
+        showEditButton={false}
+        headerImage={productLogo}
+        isSticky={true}
+        footerContent={<div>Pagination Placeholder</div>}
+        headerTitle="Products"
+        widthToFull={true}
+      >
         <Table
           data={products}
           linkHeader="Code"
@@ -42,7 +53,7 @@ const AllProducts = () => {
           headerMap={headerMap}
           linkTo="/products/:productId"
         />
-      </HeaderCard>
+      </Card>
     </NavWrapper>
   );
 };

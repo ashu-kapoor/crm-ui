@@ -5,7 +5,11 @@
   padding: 0 10%;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(110, 19, 61);
+  background-color: rgb(111 35 43);
+  position: sticky;
+  align-self: flex-start;
+  top: 0;
+  z-index: 90;
 }
 
 .logo {
