@@ -1,4 +1,5 @@
 import classes from "./FormField.module.css";
+import { Link } from "react-router-dom";
 
 const FormField = ({
   id,
@@ -8,23 +9,29 @@ const FormField = ({
   changeHandler,
   blurHandler,
   isInvalid,
-  displayInRow,
+  styleName, //values display-only, //form //login
   disabled,
+  linkPath,
 }) => {
   const filedClasses = `${classes["form-control"]} ${
     isInvalid ? `${classes["invalid"]}` : ""
-  } ${displayInRow ? classes["form-control-row"] : ""}`;
+  } ${classes[styleName]}`;
+
+  const input = (
+    <input
+      type={type}
+      id={id}
+      value={fieldValue}
+      onChange={changeHandler}
+      onBlur={blurHandler}
+      disabled={disabled}
+    />
+  );
+
   return (
     <div className={filedClasses}>
       <label htmlFor={id}>{labelText}</label>
-      <input
-        type={type}
-        id={id}
-        value={fieldValue}
-        onChange={changeHandler}
-        onBlur={blurHandler}
-        disabled={disabled}
-      />
+      {linkPath ? <Link to={linkPath}>{input}</Link> : input}
     </div>
   );
 };

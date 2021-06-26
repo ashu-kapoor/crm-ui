@@ -59,6 +59,7 @@ const LoginForm = (props) => {
             changeHandler={emailChangeHandler}
             blurHandler={emailBlurHandler}
             isInvalid={!emailIsValid}
+            styleName="login"
           />
           <FormField
             id="password"
@@ -68,6 +69,7 @@ const LoginForm = (props) => {
             changeHandler={passwordChangeHandler}
             blurHandler={passwordBlurHandler}
             isInvalid={!passwordIsValid}
+            styleName="login"
           />
         </div>
         <SimpleButton disableButton={!formIsValid} buttonText="Login" />

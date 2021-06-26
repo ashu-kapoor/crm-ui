@@ -18,6 +18,18 @@ function App() {
         <Route path="/contacts" exact>
           <AllContacts />
         </Route>
+        <Route path="/contacts/:contactId/opportunities/:opportunityId">
+          <div>OptyDetailPlaceHolder</div>
+        </Route>
+        <Route path="/contacts/:contactId/opportunities">
+          <div>ALL opty for Contact Placeholder</div>
+        </Route>
+        <Route path="/contacts/:contactId/cases/:caseId">
+          <div>CaseDetailPlaceHolder</div>
+        </Route>
+        <Route path="/contacts/:contactId/cases">
+          <div>ALL case for Contact Placeholder</div>
+        </Route>
         <Route path="/contacts/:contactId">
           <ContactsDetailPage />
         </Route>

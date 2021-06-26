@@ -4,12 +4,12 @@
 
 .form-control input,
 .form-control label {
-  display: block;
+  display: flex;
+  flex: 1;
 }
 
 .form-control label {
   font-weight: bold;
-  margin: 0.5rem;
 }
 
 .form-control input,
@@ -36,26 +36,50 @@
   background-color: #fbe8d2;
 }
 
-.form-control-row {
-  display: flex;
+.display-only {
   align-items: center;
   vertical-align: middle;
 }
 
-.form-control-row input {
+.display-only input {
   margin-right: 0.5rem;
   flex: 1;
-  max-width: 12rem;
+  max-width: 10rem;
+  border: none;
+}
+
+.row-display-only {
+  align-items: center;
+  vertical-align: middle;
+  display: flex;
+}
+
+.row-display-only input {
+  margin-right: 0.5rem;
+  flex: 1;
+  max-width: 10rem;
+  border: none;
+}
+
+.row-display-only label {
+  margin-right: 0.5rem;
+  flex: 1;
+  max-width: 10rem;
+  border: none;
+}
+
+.login:first-of-type label {
+  margin-top: 2rem;
 }
 
 @media all and (max-device-width: 400px) {
-  .form-control-row input {
-    max-width: 5rem;
+  .login input {
+    max-width: 6rem;
   }
 }
 
 @media all and (max-width: 450px) and (min-width: 400px) {
-  .form-control-row input {
+  .login input {
     max-width: 10rem;
   }
 }

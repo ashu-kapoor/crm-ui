@@ -1,7 +1,7 @@
 import NavWrapper from "../../components/layout/NavWrapper";
 import Card from "../../components/ui/common/Card";
 import contactLogo from "../../images/contact.svg";
-import ContactRelatedEntities from "../../components/ContactRelatedEntities";
+import ContactRelatedEntities from "../../components/ui/ContactRelatedEntities";
 import { useParams } from "react-router";
 
 import { generateDetailFields } from "../../helpers/contactDetailsHelper";
@@ -22,7 +22,17 @@ const customers = {
     id: "123",
     cases: ["caseId1", "caseId2", "caseId3"],
     opportunities: ["optyId1", "optyId2", "optyId3"],
-    attachments: [],
+    attachments: [
+      {
+        name: "test file 1",
+        path: "fileStorage\bc3eb83e-5142-4999-b0d4-660504414eab_questions.txt",
+      },
+      {
+        name: "test file 2",
+        path: "fileStoragee8fd08d0-ab1c-410e-bfec-be462701c08d_questions.txt",
+      },
+    ],
+    contact: "123",
   },
   456: {
     title: "Mr",
@@ -39,6 +49,7 @@ const customers = {
     cases: ["caseId4", "caseId5"],
     opportunities: ["optyId4", "optyId5", "optyId6"],
     attachments: [],
+    contact: "456",
   },
   789: {
     title: "Mr",
@@ -55,6 +66,7 @@ const customers = {
     cases: ["caseId6", "caseId7"],
     opportunities: ["optyId7", "optyId8"],
     attachments: [],
+    contact: "789",
   },
 };
 

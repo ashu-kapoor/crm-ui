@@ -118,6 +118,11 @@
 .Rtable-cell--foot {
   border-color: none;
 }
+
+.Rtable-childentity {
+  width: 100%;
+}
+
 /* Responsive
   ==================================== */
 @media all and (max-width: 400px) {

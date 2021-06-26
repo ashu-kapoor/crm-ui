@@ -1,9 +1,21 @@
 import classes from "./Table.module.css";
 import { Link } from "react-router-dom";
-import { tableMouseOverHandler, tableMouseOutHandler, getLink } from "./helper";
+import {
+  tableMouseOverHandler,
+  tableMouseOutHandler,
+  getLink,
+  parseAttachmentData,
+} from "./helper";
 
 //Supports upto 6 columns
-const Table = ({ data, linkHeader, keyHeaders, headerMap, linkTo }) => {
+const Table = ({
+  data,
+  linkHeader,
+  keyHeaders,
+  headerMap,
+  linkTo,
+  styleName,
+}) => {
   let headerJsx = [];
 
   const noOfColumns = keyHeaders.length;
@@ -39,7 +51,9 @@ const Table = ({ data, linkHeader, keyHeaders, headerMap, linkTo }) => {
         >
           {header === linkHeader ? (
             <Link to={getLink(linkTo, key)}>
-              {data[key][headerMap[header]]}
+              {header === "Attachment"
+                ? parseAttachmentData(data[key][headerMap[header]])
+                : data[key][headerMap[header]]}
             </Link>
           ) : (
             data[key][headerMap[header]]
@@ -55,7 +69,11 @@ const Table = ({ data, linkHeader, keyHeaders, headerMap, linkTo }) => {
     <div
       className={`${classes.Rtable} ${
         classes["Rtable--" + noOfColumns + "cols"]
-      } ${classes["Rtable--collapse"]}`}
+      } ${classes["Rtable--collapse"]} ${
+        styleName && styleName === "childEntity"
+          ? classes["Rtable-childentity"]
+          : ""
+      }`}
     >
       {headerJsx}
       {dataColumns}

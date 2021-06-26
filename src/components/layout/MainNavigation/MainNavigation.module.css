@@ -17,20 +17,24 @@
   color: white;
 }
 
+.nav {
+  align-self: flex-end;
+}
+
 .nav ul {
   list-style: none;
   display: flex;
-  margin: 0 auto;
+  margin: 0px;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  padding: 0px;
 }
 
 .nav li {
   height: 50px;
   transition: background-position-x 0.9s linear;
   text-align: center;
-  padding: 10px;
+  padding: 10px 10px 0px 0px;
 }
 
 .nav a {
