@@ -2,6 +2,7 @@ import NavWrapper from "../../components/layout/NavWrapper";
 import Card from "../../components/ui/common/Card";
 import contactLogo from "../../images/contact.svg";
 import ContactRelatedEntities from "../../components/ui/ContactRelatedEntities";
+import ContactsForm from "../../components/ui/ContactsForm";
 import { useParams } from "react-router";
 
 import { generateDetailFields } from "../../helpers/contactDetailsHelper";

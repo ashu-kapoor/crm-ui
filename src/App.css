@@ -14,6 +14,10 @@ body {
   /*background-color: rgb(110, 19, 61);*/
 }
 
+a input:first-child {
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
 }
