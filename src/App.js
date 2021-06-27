@@ -8,6 +8,7 @@ import AllProducts from "./pages/AllProducts";
 import AllUsers from "./pages/AllUsers";
 import ContactsDetailPage from "./pages/ContactsDetailPage";
 import ContactCasesPage from "./pages/ContactCasesPage";
+import CaseDetailPage from "./pages/CaseDetailPage";
 
 function App() {
   return (
@@ -25,8 +26,8 @@ function App() {
         <Route path="/contacts/:contactId/opportunities">
           <div>ALL opty for Contact Placeholder</div>
         </Route>
-        <Route path="/contacts/:contactId/cases/:caseId" exact>
-          <div>CaseDetailPlaceHolder</div>
+        <Route path="/contacts/:contactId/cases/:caseId">
+          <CaseDetailPage />
         </Route>
         <Route path="/contacts/:contactId/cases">
           <ContactCasesPage />
