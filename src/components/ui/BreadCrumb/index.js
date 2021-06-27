@@ -40,16 +40,60 @@ const BreadCrumb = (props) => {
             </a>
           )}
           {hasCaseId && (
-            <a
-              href={`/contacts/${match.params.contactId}/cases`}
-              onClick={clickHandler}
-            >
-              <span className={classes["breadcrumb__inner"]}>
-                <span className={classes["breadcrumb__desc"]}>
-                  Contact Cases
+            <Fragment>
+              <a
+                href={`/contacts/${match.params.contactId}`}
+                onClick={clickHandler}
+              >
+                <span className={classes["breadcrumb__inner"]}>
+                  <span className={classes["breadcrumb__desc"]}>Contact</span>
                 </span>
-              </span>
-            </a>
+              </a>
+              <a
+                href={`/contacts/${match.params.contactId}/cases`}
+                onClick={clickHandler}
+              >
+                <span className={classes["breadcrumb__inner"]}>
+                  <span className={classes["breadcrumb__desc"]}>
+                    Contact Cases
+                  </span>
+                </span>
+              </a>
+            </Fragment>
+          )}
+
+          {!hasOpportunityId &&
+            location.pathname.toLowerCase().indexOf("opportunities") >= 0 && (
+              <a
+                href={`/contacts/${match.params.contactId}`}
+                onClick={clickHandler}
+              >
+                <span className={classes["breadcrumb__inner"]}>
+                  <span className={classes["breadcrumb__desc"]}>Contact</span>
+                </span>
+              </a>
+            )}
+          {hasOpportunityId && (
+            <Fragment>
+              <a
+                href={`/contacts/${match.params.contactId}`}
+                onClick={clickHandler}
+              >
+                <span className={classes["breadcrumb__inner"]}>
+                  <span className={classes["breadcrumb__desc"]}>Contact</span>
+                </span>
+              </a>
+              <a
+                href={`/contacts/${match.params.contactId}/opportunities`}
+                onClick={clickHandler}
+              >
+                <span className={classes["breadcrumb__inner"]}>
+                  <span className={classes["breadcrumb__desc"]}>
+                    Contact Opportunities
+                  </span>
+                </span>
+              </a>
+            </Fragment>
           )}
         </div>
       </div>

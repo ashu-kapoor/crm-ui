@@ -24,7 +24,6 @@ export const getLink = (data, key) => {
 };
 
 export const parseAttachmentData = (data) => {
-  console.log(data);
   const nameParts = data.split("_");
   return nameParts[nameParts.length - 1];
 };

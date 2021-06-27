@@ -6,7 +6,7 @@ const Home = () => {
     <div className={classes["home-wrapper"]}>
       <div className={classes["home-left"]}>
         <div className={classes["home-main"]}>
-          <image className={classes["Login-logo"]} />
+          <img alt="login" className={classes["Login-logo"]} />
           <LoginForm />
         </div>
         <footer className={classes["home-footer"]}>

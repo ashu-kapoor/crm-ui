@@ -5,6 +5,8 @@ import AllUsers from "../pages/AllUsers";
 import ContactsDetailPage from "../pages/ContactsDetailPage";
 import ContactCasesPage from "../pages/ContactCasesPage";
 import CaseDetailPage from "../pages/CaseDetailPage";
+import ContactOptysPage from "../pages/ContactOptysPage";
+import OptyDetailPage from "../pages/OptyDetailPage";
 import { Redirect } from "react-router";
 import { Fragment } from "react";
 
@@ -13,12 +15,12 @@ const routes = [
   { path: "/contacts", Component: AllContacts, key: 2 },
   {
     path: "/contacts/:contactId/opportunities/:opportunityId",
-    Component: Fragment,
+    Component: OptyDetailPage,
     key: 3,
   },
   {
     path: "/contacts/:contactId/opportunities",
-    Component: Fragment,
+    Component: ContactOptysPage,
     key: 4,
   },
   {

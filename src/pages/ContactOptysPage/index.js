@@ -1,5 +1,5 @@
 import NavWrapper from "../../components/layout/NavWrapper";
-import caseLogo from "../../images/case.svg";
+import optyLogo from "../../images/opty.svg";
 import Card from "../../components/ui/common/Card";
 import Table from "../../components/ui/common/Table";
 import { useParams } from "react-router";
@@ -67,51 +67,53 @@ const customers = {
   },
 };
 
-const casesData = {
-  caseId1: {
-    caseNumber: 100,
-    description: "Test Case 1",
-    stage: "NEW",
-    priority: "HIGH",
+const opportunitiesData = {
+  optyId1: {
+    name: "Opty1",
+    description: "Description1",
+    stage: "PROSPECTING",
+    products: ["prod1", "prod2", "prod3"],
+    closeDate: "12-Dec-2020",
+    owner: "123",
+    contact: "123",
+    id: "optyId1",
+  },
+  optyId2: {
+    name: "Opty2",
+    description: "Description2",
+    stage: "PROSPECTING",
+    products: ["prod1", "prod2", "prod3"],
+    closeDate: "12-Dec-2020",
     owner: "ownerId1",
     contact: "123",
-    id: "caseId1",
+    id: "optyId2",
   },
-  caseId2: {
-    caseNumber: 101,
-    description: "Test Case 2",
-    stage: "NEW",
-    priority: "HIGH",
+  optyId3: {
+    name: "Opty3",
+    description: "Description3",
+    stage: "PROSPECTING",
+    products: ["prod1", "prod2", "prod3"],
+    closeDate: "12-Dec-2020",
     owner: "ownerId1",
-    contact: "123",
-    id: "caseId2",
-  },
-  caseId3: {
-    caseNumber: 100,
-    description: "Test Case 3",
-    stage: "NEW",
-    priority: "HIGH",
-    owner: "ownerId2",
     contact: "456",
-    id: "caseId3",
+    id: "optyId3",
   },
 };
-
-const keyHeaders = ["Case Number", "Description", "Stage", "Priority", "Owner"];
+const keyHeaders = ["Name", "Description", "Stage", "Close Date", "Owner"];
 const headerMap = {
-  "Case Number": "caseNumber",
+  Name: "name",
   Description: "description",
   Stage: "stage",
-  Priority: "priority",
+  "Close Date": "closeDate",
   Owner: "owner",
 };
 
-const ContactCasesPage = () => {
+const ContactOptysPage = () => {
   const params = useParams();
   const contact = customers[params.contactId];
-  const cases = [];
-  contact.cases.forEach((caseId) => {
-    cases.push(casesData[caseId]);
+  const opties = [];
+  contact.opportunities.forEach((optyId) => {
+    opties.push(opportunitiesData[optyId]);
   });
 
   return (
@@ -121,10 +123,10 @@ const ContactCasesPage = () => {
         showFooter={true}
         showNewButton={true}
         showEditButton={false}
-        headerImage={caseLogo}
+        headerImage={optyLogo}
         isSticky={true}
         footerContent={<div>Pagination Placeholder</div>}
-        headerTitle="Cases"
+        headerTitle="Opportunities"
         widthToFull={true}
         newClickHandler={(event) => {
           event.preventDefault();
@@ -132,14 +134,14 @@ const ContactCasesPage = () => {
         }}
       >
         <Table
-          data={cases}
-          linkHeader="Case Number"
+          data={opties}
+          linkHeader="Name"
           keyHeaders={keyHeaders}
           headerMap={headerMap}
-          linkTo={`/contacts/${params.contactId}/cases/:caseId`}
+          linkTo={`/contacts/${params.contactId}/opportunities/:opportunityId`}
         />
       </Card>
     </NavWrapper>
   );
 };
-export default ContactCasesPage;
+export default ContactOptysPage;
