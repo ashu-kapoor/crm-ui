@@ -26,6 +26,10 @@
   background-color: #e0d4fd;
 }
 
+.form-control a {
+  cursor: pointer;
+}
+
 .invalid input {
   border: 1px solid #b40e0e;
   background-color: #fddddd;

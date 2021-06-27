@@ -10,6 +10,8 @@
   align-self: flex-start;
   top: 0;
   z-index: 90;
+  flex: 1;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -19,6 +21,8 @@
 
 .nav {
   align-self: flex-end;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .nav ul {
@@ -28,6 +32,10 @@
   justify-content: center;
   align-items: center;
   padding: 0px;
+  /*For scrolling
+  max-width: 300px; 
+  overflow-y: hidden; 
+  overflow-x: auto; */
 }
 
 .nav li {
@@ -45,12 +53,11 @@
   transition: all 0.45s;
   border-radius: 1.5rem 1.5rem 0rem 0rem;
   background-color: #777;
-  width: 1rem;
 }
 
 .nav a:hover {
   background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIyIiBoZWlnaHQ9IjQ1IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDM5MCA1MCIgdmVyc2lvbj0iMS4xIj4KCiA8Zz4KICA8dGl0bGU+TGF5ZXIgMTwvdGl0bGU+CiAgPHBhdGggc3Ryb2tlPSIjZDk0ZjVjIiBpZD0ic3ZnXzEiIGQ9Im0xLjc0OTk5LDMxLjU4MTc1YzAsMCA4MCwwIDEwNi42NjY2NywwYzExLjI4MjA1LDAgMjMuNTgxNTQsLTIxLjYwMDA4IDM3Ljg4MTQ0LC0xMC44MTUwOGMxMy41MzkyOCwxMC4yMTA3MSA1NS4zMzEyOCwxMC44MTUwOCA2OC43ODUyMywxMC44MTUwOGMyNi4xMDk1NCwwIDEwNi42NjY2NywwIDEwNi42NjY2NywwIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIi8+CiA8L2c+Cjwvc3ZnPg==");
-  animation: line 1.2s;
+  animation: line 0.9s;
   height: 5px;
 }
 
