@@ -10,9 +10,26 @@ import {
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { authAction } from "../../../redux/ui/modules/auth";
+import {
+  isAuthError,
+  isAuthFetching,
+  getErrorMessage,
+  isAuthorized,
+} from "../../../redux/api/selectors/auth.selectors";
+import { notificationAction } from "../../../redux/ui/modules/notification";
+import constants from "../../../redux/constants";
+import { useEffect } from "react";
+import { Redirect } from "react-router";
 
 const LoginForm = (props) => {
-  const { handleLogin } = props;
+  const {
+    handleLogin,
+    isAuthError,
+    isAuthFetching,
+    errorMessage,
+    showNotification,
+    isAuthorized,
+  } = props;
 
   const {
     inputIsValid: emailIsValid,
@@ -43,6 +60,19 @@ const LoginForm = (props) => {
 
   if (passwordIsValid && emailIsValid) {
     formIsValid = true;
+  }
+
+  useEffect(() => {
+    if (isAuthError) {
+      showNotification(constants.NOTIFY_ERROR, errorMessage);
+    }
+    if (isAuthFetching) {
+      showNotification(constants.NOTIFY_MSG, "Signing In");
+    }
+  }, [isAuthError, showNotification, isAuthFetching]);
+
+  if (isAuthorized) {
+    return <Redirect to="/contacts" />;
   }
 
   return (
@@ -86,11 +116,28 @@ const LoginForm = (props) => {
 
 LoginForm.propTypes = {
   handleLogin: PropTypes.func.isRequired,
+  showNotification: PropTypes.func.isRequired,
+  isAuthError: PropTypes.bool.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
+  isAuthFetching: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthError: isAuthError(state),
+    isAuthFetching: isAuthFetching(state),
+    errorMessage: getErrorMessage(state),
+    isAuthorized: isAuthorized(state),
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   handleLogin: (email, password) =>
     dispatch(authAction.handleLogin(email, password)),
+  showNotification: (style, message) => {
+    dispatch(notificationAction(true, style, message));
+  },
 });
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { all } from "@redux-saga/core/effects";
 import createSagaMiddleware from "redux-saga";
 import { apiClientMiddleware } from "../api-client/apiClientMiddleware";
-import rootReducer from "../redux/api/reducers";
+import rootReducer from "./rootReducer";
 import rootAPISaga from "./api/sagas";
 import rootCustomSaga from "./ui/sagas";
 import { composeWithDevTools } from "redux-devtools-extension";

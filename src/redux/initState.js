@@ -18,7 +18,7 @@ const initialState = {
     Cases: { byId: {}, allIds: [] },
   },
   Auth: {
-    isAuthorized: true,
+    isAuthorized: false,
     token: null,
     userId: null,
   },
