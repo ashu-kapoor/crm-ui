@@ -1,10 +1,16 @@
+import PropTypes from "prop-types";
 import Table from "../../components/ui/common/Table";
 import NavWrapper from "../../components/layout/NavWrapper";
 import Card from "../../components/ui/common/Card";
 import productLogo from "../../images/products.svg";
 
+import { getAllProducts } from "../../redux/api/selectors/products.selectors";
+import { productActions } from "../../redux/ui/modules/products";
+import { connect } from "react-redux";
+import { useEffect } from "react";
+
 //DUMMY DATA
-const products = {
+/*const products = {
   123: {
     name: "Test Product 1",
     code: "TST01",
@@ -23,7 +29,16 @@ const products = {
     listPrice: "12.22",
     id: "789",
   },
+};*/
+
+const mapStateToProps = (state) => {
+  const allProducts = getAllProducts(state);
+  return { products: allProducts };
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchProducts: () => dispatch(productActions.handleGetProducts()),
+});
 
 const keyHeaders = ["Name", "Code", "List Price"];
 const headerMap = {
@@ -32,7 +47,13 @@ const headerMap = {
   "List Price": "listPrice",
 };
 
-const AllProducts = () => {
+const AllProducts = (props) => {
+  const { fetchProducts, products } = props;
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
   return (
     <NavWrapper>
       <Card
@@ -58,4 +79,9 @@ const AllProducts = () => {
   );
 };
 
-export default AllProducts;
+AllProducts.propTypes = {
+  products: PropTypes.object.isRequired,
+  fetchProducts: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllProducts);

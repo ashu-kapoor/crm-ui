@@ -1,5 +1,6 @@
 import classes from "./Table.module.css";
 import { Link } from "react-router-dom";
+import { Fragment } from "react";
 import {
   tableMouseOverHandler,
   tableMouseOutHandler,
@@ -19,6 +20,10 @@ const Table = ({
   let headerJsx = [];
 
   const noOfColumns = keyHeaders.length;
+
+  if (!data || Object.keys(data).length === 0) {
+    return <Fragment>No data Found</Fragment>;
+  }
 
   keyHeaders.forEach((header) => {
     headerJsx.push(

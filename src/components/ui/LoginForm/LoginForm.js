@@ -7,8 +7,13 @@ import {
   emailValidator,
   passwordValidator,
 } from "../../../validators/loginValidators";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { authAction } from "../../../redux/ui/modules/auth";
 
 const LoginForm = (props) => {
+  const { handleLogin } = props;
+
   const {
     inputIsValid: emailIsValid,
     value: emailValue,
@@ -29,7 +34,7 @@ const LoginForm = (props) => {
     event.preventDefault();
     console.log(emailValue);
     console.log(passwordValue);
-
+    handleLogin(emailValue, passwordValue);
     emailReset();
     passwordReset();
   };
@@ -79,4 +84,13 @@ const LoginForm = (props) => {
   );
 };
 
-export default LoginForm;
+LoginForm.propTypes = {
+  handleLogin: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  handleLogin: (email, password) =>
+    dispatch(authAction.handleLogin(email, password)),
+});
+
+export default connect(null, mapDispatchToProps)(LoginForm);
