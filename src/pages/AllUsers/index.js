@@ -72,6 +72,7 @@ const AllUsers = (props) => {
           keyHeaders={keyHeaders}
           headerMap={headerMap}
           linkTo="/users/:userId"
+          styleName="childEntity"
         />
       </Card>
     </NavWrapper>

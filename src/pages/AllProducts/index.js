@@ -73,6 +73,7 @@ const AllProducts = (props) => {
           keyHeaders={keyHeaders}
           headerMap={headerMap}
           linkTo="/products/:productId"
+          styleName="childEntity"
         />
       </Card>
     </NavWrapper>
