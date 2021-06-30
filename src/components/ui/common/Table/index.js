@@ -55,7 +55,7 @@ const Table = ({
           } `}
         >
           {header === linkHeader ? (
-            <Link to={getLink(linkTo, data[key].id)}>
+            <Link to={getLink(linkTo, data[key]._id)}>
               {header === "Attachment"
                 ? parseAttachmentData(data[key][headerMap[header]])
                 : data[key][headerMap[header]]}
