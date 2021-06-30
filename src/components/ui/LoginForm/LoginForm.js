@@ -117,9 +117,9 @@ const LoginForm = (props) => {
 LoginForm.propTypes = {
   handleLogin: PropTypes.func.isRequired,
   showNotification: PropTypes.func.isRequired,
-  isAuthError: PropTypes.bool.isRequired,
+  isAuthError: PropTypes.bool,
   isAuthorized: PropTypes.bool.isRequired,
-  isAuthFetching: PropTypes.bool.isRequired,
+  isAuthFetching: PropTypes.bool,
   errorMessage: PropTypes.string.isRequired,
 };
 

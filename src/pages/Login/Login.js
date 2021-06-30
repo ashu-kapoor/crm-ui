@@ -1,12 +1,13 @@
 import classes from "./Login.module.css";
 import LoginForm from "../../components/ui/LoginForm/LoginForm";
+import loginLogo from "../../images/login.svg";
 
 const Home = () => {
   return (
     <div className={classes["home-wrapper"]}>
       <div className={classes["home-left"]}>
         <div className={classes["home-main"]}>
-          <img alt="login" className={classes["Login-logo"]} />
+          <img alt="login" className={classes["Login-logo"]} src={loginLogo} />
           <LoginForm />
         </div>
         <footer className={classes["home-footer"]}>
