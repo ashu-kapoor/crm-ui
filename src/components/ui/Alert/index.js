@@ -28,7 +28,7 @@ class Alert extends React.PureComponent {
         }
         this.timer = null;
       }.bind(this),
-      4000
+      3000
     );
   }
 

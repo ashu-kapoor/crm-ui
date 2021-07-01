@@ -8,11 +8,31 @@
 .home-right {
   display: table-cell;
   vertical-align: top;
-  background-color: #d8dde6;
+  background-color: #c3c3c3;
   width: 50%;
   height: 100%;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgb(255, 255, 255);
   padding: 10px;
+}
+
+.home-right-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.home-right-content ul,
+h1 {
+  width: 100%;
+}
+
+.home-right-content h1 {
+  text-align: center;
+}
+
+.home-right-content li {
+  list-style: circle;
 }
 
 .home-wrapper {
@@ -22,6 +42,7 @@
   padding: 0px;
   margin: 0 auto;
   font-size: 0.8125rem;
+  height: 100vh;
 }
 
 .home-main {
@@ -34,11 +55,12 @@
 }
 
 .home-footer {
-  position: relative;
+  position: absolute;
   height: 24px;
   width: 100%;
   clear: both;
   text-align: center;
+  margin-top: -48px;
 }
 
 .Login-logo {
