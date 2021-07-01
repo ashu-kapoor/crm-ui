@@ -107,6 +107,12 @@ export const usersActions = createActions({
           (err, metadata) => ({ meta: metadata, entity: "Users" }),
         ],
       },
+      pagination: {
+        FIRST: () => ({}),
+        LAST: () => ({}),
+        PREVIOUS: () => ({}),
+        NEXT: () => ({}),
+      },
     },
   },
 }); //actions map

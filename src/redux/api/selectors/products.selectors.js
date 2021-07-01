@@ -48,7 +48,7 @@ export const getProductsByIds = createSelector(
 );
 
 export const isProductsFetching = createSelector([getProductsSlice], (slice) =>
-  slice ? slice.isUsersFetching : null
+  slice ? slice.isFetching : null
 );
 
 export const isProductsError = createSelector([getProductsSlice], (slice) =>

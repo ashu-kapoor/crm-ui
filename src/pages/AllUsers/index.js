@@ -4,9 +4,10 @@ import Table from "../../components/ui/common/Table";
 import NavWrapper from "../../components/layout/NavWrapper";
 import Card from "../../components/ui/common/Card";
 import userLogo from "../../images/users.svg";
-import { getAllUsers } from "../../redux/api/selectors/users.selectors";
+import { getUsersByPagination } from "../../redux/api/selectors/users.selectors";
 import { userActions } from "../../redux/ui/modules/users";
 import { connect } from "react-redux";
+import Pagination from "../../components/ui/common/Pagination";
 
 //DUMMY DATA
 /*const users = {
@@ -31,7 +32,7 @@ import { connect } from "react-redux";
 };*/
 
 const mapStateToProps = (state) => {
-  const allUsers = getAllUsers(state);
+  const allUsers = getUsersByPagination(state);
   return { users: allUsers };
 };
 
@@ -62,7 +63,7 @@ const AllUsers = (props) => {
         showEditButton={false}
         headerImage={userLogo}
         isSticky={true}
-        footerContent={<div>Pagination Placeholder</div>}
+        footerContent={<Pagination entityName="Users" />}
         headerTitle="Users"
         widthToFull={true}
       >

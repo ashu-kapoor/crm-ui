@@ -7,7 +7,12 @@ import {
   reducerClear,
   reducerError,
   reducerRequest,
+  firstPageReducer,
+  lastPageReducer,
+  previousPageReducer,
+  nextPageReducer,
 } from "./common";
+import constants from "../../constants";
 
 const reducerReceive = (state = {}, action) => {
   const {
@@ -16,11 +21,22 @@ const reducerReceive = (state = {}, action) => {
     meta: { meta: metaData },
   } = action;
   const currentById = cloneDeep(state.byId);
+  const paging = { ...state.Paging };
+
+  const allIds = uniq([...state.allIds, ...payload.Users.allIds]);
+  paging.count = allIds.length;
+
+  //Users only called on initial load or from contacts so pagination updated to 0
+  paging.nextPageKey = paging.count > constants.PAGE_SIZE ? 1 : null;
+  paging.previousPageKey = null;
+  paging.currentPageKey = 0;
+
   return {
     byId: merge(currentById, payload.Users.byId),
-    allIds: uniq([...state.allIds, ...payload.Users.allIds]),
+    allIds: allIds,
     isFetching: false,
     isError: false,
+    Paging: paging,
   };
 };
 
@@ -39,6 +55,11 @@ export const usersReducer = handleActions(
     [usersActions.api.users.delete.request]: reducerRequest,
     [usersActions.api.users.delete.receive]: reducerReceive,
     [usersActions.api.users.delete.error]: reducerError,
+
+    [usersActions.api.users.pagination.first]: firstPageReducer,
+    [usersActions.api.users.pagination.last]: lastPageReducer,
+    [usersActions.api.users.pagination.previous]: previousPageReducer,
+    [usersActions.api.users.pagination.next]: nextPageReducer,
   },
   defaultStateShape
 );

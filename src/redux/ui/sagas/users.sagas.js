@@ -1,4 +1,4 @@
-import { takeLatest, put, call } from "@redux-saga/core/effects";
+import { takeLatest, put } from "@redux-saga/core/effects";
 import { usersActions } from "../../api/actions/users.actions";
 import { userActions as customUserAction } from "../modules/users";
 

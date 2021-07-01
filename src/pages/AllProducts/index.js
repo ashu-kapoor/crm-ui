@@ -65,7 +65,7 @@ const AllProducts = (props) => {
         showEditButton={false}
         headerImage={productLogo}
         isSticky={true}
-        footerContent={<Pagination />}
+        footerContent={<Pagination entityName="Products" />}
         headerTitle="Products"
         widthToFull={true}
       >
