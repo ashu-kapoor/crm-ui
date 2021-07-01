@@ -11,11 +11,61 @@ const initialState = {
     Notification: { visible: false, mode: constants.NOTIFY_MSG },
   },
   Data: {
-    Products: { byId: {}, allIds: [] },
-    Users: { byId: {}, allIds: [] },
-    Contacts: { byId: {}, allIds: [] },
-    Opportunities: { byId: {}, allIds: [] },
-    Cases: { byId: {}, allIds: [] },
+    Products: {
+      byId: {},
+      allIds: [],
+      Paging: {
+        count: 0,
+        pageSize: constants.PAGE_SIZE,
+        nextPageKey: null,
+        previousPageKey: null,
+        currentPageKey: 0,
+      },
+    },
+    Users: {
+      byId: {},
+      allIds: [],
+      Paging: {
+        count: 0,
+        pageSize: constants.PAGE_SIZE,
+        nextPageKey: null,
+        previousPageKey: null,
+        currentPageKey: 0,
+      },
+    },
+    Contacts: {
+      byId: {},
+      allIds: [],
+      Paging: {
+        count: 0,
+        pageSize: constants.PAGE_SIZE,
+        nextPageKey: null,
+        previousPageKey: null,
+        currentPageKey: 0,
+      },
+    },
+    Opportunities: {
+      byId: {},
+      allIds: [],
+      Paging: {
+        count: 0,
+        pageSize: constants.PAGE_SIZE,
+        nextPageKey: null,
+        previousPageKey: null,
+        currentPageKey: 0,
+      },
+    },
+    Cases: {
+      byId: {},
+      allIds: [],
+      Paging: {
+        count: 0,
+        pageSize: constants.PAGE_SIZE,
+        nextPageKey: null,
+        previousPageKey: null,
+        currentPageKey: 0,
+      },
+    },
   },
   Auth: {
     isAuthorized: false,

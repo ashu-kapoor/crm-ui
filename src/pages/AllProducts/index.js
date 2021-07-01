@@ -4,10 +4,12 @@ import NavWrapper from "../../components/layout/NavWrapper";
 import Card from "../../components/ui/common/Card";
 import productLogo from "../../images/products.svg";
 
-import { getAllProducts } from "../../redux/api/selectors/products.selectors";
+import { getProductsByPagination } from "../../redux/api/selectors/products.selectors";
 import { productActions } from "../../redux/ui/modules/products";
 import { connect } from "react-redux";
 import { useEffect } from "react";
+
+import Pagination from "../../components/ui/common/Pagination";
 
 //DUMMY DATA
 /*const products = {
@@ -32,7 +34,7 @@ import { useEffect } from "react";
 };*/
 
 const mapStateToProps = (state) => {
-  const allProducts = getAllProducts(state);
+  const allProducts = getProductsByPagination(state);
   return { products: allProducts };
 };
 
@@ -63,7 +65,7 @@ const AllProducts = (props) => {
         showEditButton={false}
         headerImage={productLogo}
         isSticky={true}
-        footerContent={<div>Pagination Placeholder</div>}
+        footerContent={<Pagination />}
         headerTitle="Products"
         widthToFull={true}
       >

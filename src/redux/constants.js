@@ -3,6 +3,7 @@ var constants = {
   EDIT: "Edit",
   NOTIFY_ERROR: "Error",
   NOTIFY_MSG: "Message",
+  PAGE_SIZE: 5,
 };
 
 export default constants;

@@ -7,7 +7,12 @@ import {
   reducerClear,
   reducerError,
   reducerRequest,
+  nextPageReducer,
+  previousPageReducer,
+  firstPageReducer,
+  lastPageReducer,
 } from "./common";
+import constants from "../../constants";
 
 const reducerReceive = (state = {}, action) => {
   const {
@@ -16,11 +21,22 @@ const reducerReceive = (state = {}, action) => {
     meta: { meta: metaData },
   } = action;
   const currentById = cloneDeep(state.byId);
+  const paging = { ...state.Paging };
+
+  const allIds = uniq([...state.allIds, ...payload.Products.allIds]);
+  paging.count = allIds.length;
+
+  //Products only called on initial load or from contacts so pagination updated to 0
+  paging.nextPageKey = paging.count > constants.PAGE_SIZE ? 1 : null;
+  paging.previousPageKey = null;
+  paging.currentPageKey = 0;
+
   return {
     byId: merge(currentById, payload.Products.byId),
-    allIds: uniq([...state.allIds, ...payload.Products.allIds]),
+    allIds: allIds,
     isFetching: false,
     isError: false,
+    Paging: paging,
   };
 };
 
@@ -39,6 +55,11 @@ export const productsReducer = handleActions(
     [productsActions.api.products.delete.request]: reducerRequest,
     [productsActions.api.products.delete.receive]: reducerReceive,
     [productsActions.api.products.delete.error]: reducerError,
+
+    [productsActions.api.products.pagination.first]: firstPageReducer,
+    [productsActions.api.products.pagination.last]: lastPageReducer,
+    [productsActions.api.products.pagination.previous]: previousPageReducer,
+    [productsActions.api.products.pagination.next]: nextPageReducer,
   },
   defaultStateShape
 );

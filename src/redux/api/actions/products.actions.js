@@ -108,6 +108,12 @@ export const productsActions = createActions({
           (err, metadata) => ({ meta: metadata, entity: "Products" }),
         ],
       },
+      pagination: {
+        FIRST: () => ({}),
+        LAST: () => ({}),
+        PREVIOUS: () => ({}),
+        NEXT: () => ({}),
+      },
     },
   },
 }); //actions map
