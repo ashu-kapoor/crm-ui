@@ -15,12 +15,20 @@ const reducerReceive = (state = {}, action) => {
     meta,
     meta: { meta: metaData },
   } = action;
+  const receivedPaging = payload.Paging;
   const currentById = cloneDeep(state.byId);
+  const Paging = { ...state.Paging, ...receivedPaging };
+  if (Paging.previousPageKey != null) {
+    Paging.currentPageKey = state.Paging.previousPageKey + 1;
+  } else {
+    Paging.currentPageKey = 0;
+  }
   return {
     byId: merge(currentById, payload.Contacts.byId),
     allIds: uniq([...state.allIds, ...payload.Contacts.allIds]),
     isFetching: false,
     isError: false,
+    Paging,
   };
 };
 

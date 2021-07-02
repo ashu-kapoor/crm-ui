@@ -2,7 +2,7 @@ import { takeLatest, put } from "@redux-saga/core/effects";
 import { usersActions } from "../../api/actions/users.actions";
 import { userActions as customUserAction } from "../modules/users";
 
-export function* handleGetUsers({}) {
+export function* handleGetUsers() {
   yield put(
     usersActions.api.users.get.request({ meta: { action: "GET_USERS" } })
   );

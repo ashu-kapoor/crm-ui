@@ -3,12 +3,20 @@ import classes from "./Pagination.module.css";
 import {
   hasNextPage as productHasNextPage,
   hasPreviousPage as productHasPreviousPage,
+  getPageKeys as productPageKeys,
 } from "../../../../redux/api/selectors/products.selectors";
 
 import {
   hasNextPage as userHasNextPage,
   hasPreviousPage as userHasPreviousPage,
+  getPageKeys as userPageKeys,
 } from "../../../../redux/api/selectors/users.selectors";
+
+import {
+  hasNextPage as contactHasNextPage,
+  hasPreviousPage as contactHasPreviousPage,
+  getPageKeys as contactPageKeys,
+} from "../../../../redux/api/selectors/contacts.selectors";
 
 import PropTypes from "prop-types";
 
@@ -23,26 +31,27 @@ const Pagination = (props) => {
     hasPrevious,
     hasNext,
     entityName,
+    page,
   } = props;
 
   const firstClick = (event) => {
     event.preventDefault();
-    handleFirst(entityName);
+    handleFirst(entityName, page);
   };
 
   const nextClick = (event) => {
     event.preventDefault();
-    handleNext(entityName);
+    handleNext(entityName, page);
   };
 
   const lastClick = (event) => {
     event.preventDefault();
-    handleLast(entityName);
+    handleLast(entityName, page);
   };
 
   const previousClick = (event) => {
     event.preventDefault();
-    handlePrevious(entityName);
+    handlePrevious(entityName, page);
   };
 
   return (
@@ -112,6 +121,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
       hasNext: productHasNextPage(state),
       hasPrevious: productHasPreviousPage(state),
+      page: productPageKeys(state),
     };
   }
 
@@ -119,22 +129,31 @@ const mapStateToProps = (state, ownProps) => {
     return {
       hasNext: userHasNextPage(state),
       hasPrevious: userHasPreviousPage(state),
+      page: userPageKeys(state),
+    };
+  }
+
+  if (entityName == "Contacts") {
+    return {
+      hasNext: contactHasNextPage(state),
+      hasPrevious: contactHasPreviousPage(state),
+      page: contactPageKeys(state),
     };
   }
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handlePrevious: (entityName) => {
-    dispatch(paginationActions.handlePreviousPagination(entityName));
+  handlePrevious: (entityName, page) => {
+    dispatch(paginationActions.handlePreviousPagination(entityName, page));
   },
-  handleNext: (entityName) => {
-    dispatch(paginationActions.handleNextPagination(entityName));
+  handleNext: (entityName, page) => {
+    dispatch(paginationActions.handleNextPagination(entityName, page));
   },
-  handleFirst: (entityName) => {
-    dispatch(paginationActions.handleFirstPagination(entityName));
+  handleFirst: (entityName, page) => {
+    dispatch(paginationActions.handleFirstPagination(entityName, page));
   },
-  handleLast: (entityName) => {
-    dispatch(paginationActions.handleLastPagination(entityName));
+  handleLast: (entityName, page) => {
+    dispatch(paginationActions.handleLastPagination(entityName, page));
   },
 });
 
@@ -146,6 +165,7 @@ Pagination.propTypes = {
   hasPrevious: PropTypes.bool.isRequired,
   hasNext: PropTypes.bool.isRequired,
   entityName: PropTypes.string.isRequired,
+  page: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

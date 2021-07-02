@@ -1,10 +1,13 @@
 import { takeLatest, put } from "@redux-saga/core/effects";
 import { usersActions } from "../../api/actions/users.actions";
 import { productsActions } from "../../api/actions/products.actions";
+import { contactsActions } from "../../api/actions/contacts.actions";
 import { paginationActions } from "../modules/pagination";
+import constants from "../../constants";
 
 export function* handlePreviousPagination({ payload }) {
-  const { entityName } = payload;
+  const { entityName, page } = payload;
+  const { previousPageKey } = page;
 
   switch (entityName) {
     case "Products":
@@ -13,11 +16,19 @@ export function* handlePreviousPagination({ payload }) {
     case "Users":
       yield put(usersActions.api.users.pagination.previous());
       break;
+    case "Contacts":
+      yield put(
+        contactsActions.api.contacts.get.request({
+          query: { pageKey: previousPageKey, pageSize: constants.PAGE_SIZE },
+        })
+      );
+      break;
   }
 }
 
 export function* handleNextPagination({ payload }) {
-  const { entityName } = payload;
+  const { entityName, page } = payload;
+  const { nextPageKey } = page;
 
   switch (entityName) {
     case "Products":
@@ -25,6 +36,13 @@ export function* handleNextPagination({ payload }) {
       break;
     case "Users":
       yield put(usersActions.api.users.pagination.next());
+      break;
+    case "Contacts":
+      yield put(
+        contactsActions.api.contacts.get.request({
+          query: { pageKey: nextPageKey, pageSize: constants.PAGE_SIZE },
+        })
+      );
       break;
   }
 }
@@ -39,11 +57,19 @@ export function* handleFirstPagination({ payload }) {
     case "Users":
       yield put(usersActions.api.users.pagination.first());
       break;
+    case "Contacts":
+      yield put(
+        contactsActions.api.contacts.get.request({
+          query: { pageKey: 0, pageSize: constants.PAGE_SIZE },
+        })
+      );
+      break;
   }
 }
 
 export function* handleLastPagination({ payload }) {
-  const { entityName } = payload;
+  const { entityName, page } = payload;
+  const { count } = page;
 
   switch (entityName) {
     case "Products":
@@ -51,6 +77,21 @@ export function* handleLastPagination({ payload }) {
       break;
     case "Users":
       yield put(usersActions.api.users.pagination.last());
+      break;
+    case "Contacts":
+      const lastKey =
+        count % constants.PAGE_SIZE === 0
+          ? count / constants.PAGE_SIZE - 1
+          : count / constants.PAGE_SIZE;
+
+      yield put(
+        contactsActions.api.contacts.get.request({
+          query: {
+            pageKey: Math.floor(lastKey),
+            pageSize: constants.PAGE_SIZE,
+          },
+        })
+      );
       break;
   }
 }

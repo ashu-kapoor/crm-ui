@@ -1,6 +1,7 @@
 import classes from "./Table.module.css";
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
+import { get } from "lodash";
 import {
   tableMouseOverHandler,
   tableMouseOutHandler,
@@ -61,7 +62,7 @@ const Table = ({
                 : data[key][headerMap[header]]}
             </Link>
           ) : (
-            data[key][headerMap[header]]
+            get(data[key], get(headerMap, header, ""), "")
           )}
         </div>
       );

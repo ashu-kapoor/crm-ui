@@ -21,6 +21,7 @@ const Home = () => {
             <li>Protected Routes using custom component</li>
             <li>Uses redux, saga pattern for context management</li>
             <li>Local as well as server pagination</li>
+            <li>Custom hook for login page</li>
           </ul>
           <h1>Functionality</h1>
           <ul>

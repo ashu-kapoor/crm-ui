@@ -20,6 +20,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  color: rgb(110, 19, 61);
 }
 
 .home-right-content ul,
@@ -33,6 +34,7 @@ h1 {
 
 .home-right-content li {
   list-style: circle;
+  font-size: medium;
 }
 
 .home-wrapper {

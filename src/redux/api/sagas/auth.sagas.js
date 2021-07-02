@@ -2,6 +2,8 @@ import { authActions } from "../actions/auth.actions";
 import { apiEndPointConfig } from "../../../api-client/config";
 import { buildApiEndpoint, apiClient } from "../../../api-client/apiClient";
 import { put, call } from "@redux-saga/core/effects";
+import { contactsActions } from "../actions/contacts.actions";
+import constants from "../../constants";
 
 export function* postAuthData(action) {
   const {
@@ -23,6 +25,9 @@ export function* postAuthData(action) {
 
     const dispatchAPIResponse = authActions.api.auth.post.receive;
     yield put(dispatchAPIResponse(response, status, resource, meta));
+    //as soon as login is successful get contacts
+    const dispatchContactRequest = contactsActions.api.contacts.get.request;
+    yield put(dispatchContactRequest({query:{pageKey:0, pageSize: constants.PAGE_SIZE}}))
   } catch (exception) {
     yield put(dispatchAPIError({ ...exception }, meta));
   }

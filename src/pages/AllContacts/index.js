@@ -2,9 +2,12 @@ import Table from "../../components/ui/common/Table";
 import NavWrapper from "../../components/layout/NavWrapper";
 import Card from "../../components/ui/common/Card";
 import contactLogo from "../../images/contact.svg";
+import { connect } from "react-redux";
+import { getContactsByPagination } from "../../redux/api/selectors/contacts.selectors";
+import Pagination from "../../components/ui/common/Pagination";
 
 //DUMMY DATA
-const customers = {
+/*const customers = {
   123: {
     title: "Mr",
     name: "Ashutosh",
@@ -26,17 +29,18 @@ const customers = {
     city: "Sydney",
     id: "789",
   },
-};
+};*/
 
 const keyHeaders = ["Title", "Name", "Phone", "City"];
 const headerMap = {
   Title: "title",
   Name: "name",
   Phone: "phone",
-  City: "city",
+  City: "address.city",
 };
 
-const AllContacts = () => {
+const AllContacts = (props) => {
+  const { customers } = props;
   return (
     <NavWrapper>
       <Card
@@ -46,7 +50,7 @@ const AllContacts = () => {
         showEditButton={false}
         headerImage={contactLogo}
         isSticky={true}
-        footerContent={<div>Pagination Placeholder</div>}
+        footerContent={<Pagination entityName="Contacts" />}
         headerTitle="Contacts"
         widthToFull={true}
       >
@@ -56,10 +60,20 @@ const AllContacts = () => {
           keyHeaders={keyHeaders}
           headerMap={headerMap}
           linkTo="/contacts/:contactId"
+          styleName="childEntity"
         />
       </Card>
     </NavWrapper>
   );
 };
 
-export default AllContacts;
+const mapStateToProps = (state) => {
+  const allContacts = getContactsByPagination(state);
+  return { customers: allContacts };
+};
+
+/*const mapDispatchToProps = (dispatch) => ({
+  fetchUsers: () => dispatch(userActions.handleGetUsers()),
+});*/
+
+export default connect(mapStateToProps, null)(AllContacts);

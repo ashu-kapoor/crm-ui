@@ -11,4 +11,5 @@ export const apiEndPointConfig = {
   getProductsUrl: "products",
   getProductsByIdUrl: "products/{productId}",
   postAuthUrl: "auth",
+  getContactsUrl: "contacts",
 };

@@ -82,3 +82,11 @@ export const hasNextPage = createSelector([getUsersPagination], (slice) =>
 export const hasPreviousPage = createSelector([getUsersPagination], (slice) =>
   slice.previousPageKey == null ? false : true
 );
+
+export const getPageKeys = (state) => {
+  return {
+    nextPageKey: get(getUsersSlice(state), "Paging.nextPageKey", null),
+    previousPageKey: get(getUsersSlice(state), "Paging.previousPageKey", null),
+    count: get(getUsersSlice(state), "Paging.count", null),
+  };
+};
