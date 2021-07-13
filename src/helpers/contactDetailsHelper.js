@@ -16,10 +16,13 @@ const contactCaseDisplayOrder = ["caseNumber", "description", "stage"];
 
 export const generateDetailFields = (customerToDisplay) => {
   const fields = [];
+  if (!customerToDisplay) {
+    return <Fragment>No Content Found</Fragment>;
+  }
   contactDetailDisplayOrder.forEach((key) => {
     fields.push(
       <FormField
-        key={customerToDisplay.id + "---" + key}
+        key={customerToDisplay._id + "---" + key}
         type="text"
         labelText={key.charAt(0).toUpperCase() + key.slice(1)}
         fieldValue={

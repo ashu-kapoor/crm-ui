@@ -51,9 +51,13 @@ const ContactCases = ({ customerToDisplay }) => {
       }}
       widthToFull={true}
       footerContent={
-        <Link to={"/contacts/" + customerToDisplay.id + "/cases"}>
-          View All
-        </Link>
+        customerToDisplay.cases.length > 0 ? (
+          <Link to={"/contacts/" + customerToDisplay._id + "/cases"}>
+            View All
+          </Link>
+        ) : (
+          "View All"
+        )
       }
     >
       {caseFields}

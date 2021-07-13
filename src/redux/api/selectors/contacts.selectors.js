@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { get } from "lodash";
+import { get, isNil } from "lodash";
 
 export const getContactsSlice = (state) => get(state, "Data.Contacts", null);
 
@@ -34,7 +34,10 @@ export const getAllContacts = createSelector(
 );
 
 //ids prop will be array
-const idsList = (state, { id, ids }) => ids || (id ? [id] : []);
+const idsList = (state, { id, ids }) => {
+  const data = id ? [id] : ids;
+  return data;
+};
 
 //get Contacts by Ids
 export const getContactsByIds = createSelector(
@@ -42,7 +45,7 @@ export const getContactsByIds = createSelector(
   (ids, ContactsById) =>
     ids && ContactsById
       ? ids.map((id) => ({
-          id: ContactsById[id],
+          [id]: ContactsById[id],
         }))
       : []
 );

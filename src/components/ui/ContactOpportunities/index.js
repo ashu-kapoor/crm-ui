@@ -2,8 +2,10 @@ import opportunityLogo from "../../../images/opty.svg";
 import { generateContactOptyDetailFields } from "../../../helpers/contactDetailsHelper";
 import Card from "../common/Card";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getOpportunitiesByIds } from "../../../redux/api/selectors/opportunites.selectors";
 
-const opportunities = {
+/*const opportunities = {
   optyId1: {
     name: "Opty1",
     description: "Description1",
@@ -34,11 +36,16 @@ const opportunities = {
     contact: "456",
     id: "optyId3",
   },
-};
+};*/
 
-const ContactOpportunities = ({ customerToDisplay }) => {
+const ContactOpportunities = ({ customerToDisplay, opportunities }) => {
+  const opytObj =
+    opportunities.find((o) =>
+      o.hasOwnProperty(customerToDisplay.opportunities[0])
+    ) || {};
+
   const optyFields = generateContactOptyDetailFields(
-    opportunities[customerToDisplay.opportunities[0]]
+    opytObj[customerToDisplay.opportunities[0]]
   );
 
   return (
@@ -54,9 +61,13 @@ const ContactOpportunities = ({ customerToDisplay }) => {
       }}
       widthToFull={true}
       footerContent={
-        <Link to={"/contacts/" + customerToDisplay.id + "/opportunities"}>
-          View All
-        </Link>
+        customerToDisplay.opportunities.length > 0 ? (
+          <Link to={"/contacts/" + customerToDisplay._id + "/opportunities"}>
+            View All
+          </Link>
+        ) : (
+          "View All"
+        )
       }
     >
       {optyFields}
@@ -64,4 +75,12 @@ const ContactOpportunities = ({ customerToDisplay }) => {
   );
 };
 
-export default ContactOpportunities;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    opportunities: getOpportunitiesByIds(state, {
+      ids: ownProps.customerToDisplay.opportunities,
+    }),
+  };
+};
+
+export default connect(mapStateToProps, null)(ContactOpportunities);

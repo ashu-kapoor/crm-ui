@@ -2,9 +2,12 @@ import NavWrapper from "../../components/layout/NavWrapper";
 import optyLogo from "../../images/opty.svg";
 import Card from "../../components/ui/common/Card";
 import Table from "../../components/ui/common/Table";
-import { useParams } from "react-router";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { getOpportunitiesByIds } from "../../redux/api/selectors/opportunites.selectors";
+import { getContactsByIds } from "../../redux/api/selectors/contacts.selectors";
 
-const customers = {
+/*const customers = {
   123: {
     title: "Mr",
     name: "Ashutosh",
@@ -98,7 +101,8 @@ const opportunitiesData = {
     contact: "456",
     id: "optyId3",
   },
-};
+};*/
+
 const keyHeaders = ["Name", "Description", "Stage", "Close Date", "Owner"];
 const headerMap = {
   Name: "name",
@@ -108,13 +112,13 @@ const headerMap = {
   Owner: "owner",
 };
 
-const ContactOptysPage = () => {
-  const params = useParams();
-  const contact = customers[params.contactId];
-  const opties = [];
-  contact.opportunities.forEach((optyId) => {
-    opties.push(opportunitiesData[optyId]);
-  });
+const ContactOptysPage = (props) => {
+  const contactId = props.match.params.contactId;
+  //opties array for the Contact
+  const { opties } = props;
+
+  const optyData = [];
+  opties.forEach((o) => optyData.push(Object.values(o)[0]));
 
   return (
     <NavWrapper>
@@ -134,14 +138,26 @@ const ContactOptysPage = () => {
         }}
       >
         <Table
-          data={opties}
+          data={optyData}
           linkHeader="Name"
           keyHeaders={keyHeaders}
           headerMap={headerMap}
-          linkTo={`/contacts/${params.contactId}/opportunities/:opportunityId`}
+          linkTo={`/contacts/${contactId}/opportunities/:opportunityId`}
         />
       </Card>
     </NavWrapper>
   );
 };
-export default ContactOptysPage;
+
+const mapStateToProps = (state, ownProps) => {
+  const contactId = ownProps.match.params.contactId;
+  const contact = getContactsByIds(state, { id: contactId });
+  const optyIds = contact[0][contactId]["opportunities"];
+  return {
+    opties: getOpportunitiesByIds(state, {
+      ids: optyIds,
+    }),
+  };
+};
+
+export default withRouter(connect(mapStateToProps, null)(ContactOptysPage));

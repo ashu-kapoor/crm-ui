@@ -3,12 +3,17 @@ import Card from "../../components/ui/common/Card";
 import contactLogo from "../../images/contact.svg";
 import ContactRelatedEntities from "../../components/ui/ContactRelatedEntities";
 import ContactsForm from "../../components/ui/ContactsForm";
-import { useParams } from "react-router";
-
+import { notificationAction } from "../../redux/ui/modules/notification";
+import { getContactsByIds } from "../../redux/api/selectors/contacts.selectors";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
 import { generateDetailFields } from "../../helpers/contactDetailsHelper";
+import { useEffect } from "react";
+import constants from "../../redux/constants";
+import { contactActions } from "../../redux/ui/modules/contacts";
 
 //DUMMY DATA
-const customers = {
+/*const customers = {
   123: {
     title: "Mr",
     name: "Ashutosh",
@@ -69,12 +74,26 @@ const customers = {
     attachments: [],
     contact: "789",
   },
-};
+};*/
 
-const ContactsDetailPage = () => {
-  const params = useParams();
-  const customerToDisplay = customers[params.contactId];
+const ContactsDetailPage = (props) => {
+  const { showNotification } = props;
+  const contactId = props.match.params.contactId;
+  const customerToDisplay = props.customers[0][contactId];
   const fields = generateDetailFields(customerToDisplay);
+
+  useEffect(() => {
+    showNotification(constants.NOTIFY_MSG, "Fetching data", contactId);
+  }, [showNotification, contactId, constants.NOTIFY_MSG]);
+
+  if (!customerToDisplay) {
+    return (
+      <NavWrapper>
+        <Card widthToFull={true}>Issue Fetching Data</Card>
+      </NavWrapper>
+    );
+  }
+
   return (
     <NavWrapper>
       <Card
@@ -101,4 +120,19 @@ const ContactsDetailPage = () => {
   );
 };
 
-export default ContactsDetailPage;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    customers: getContactsByIds(state, { id: ownProps.match.params.contactId }),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  showNotification: (style, message, contactId) => {
+    dispatch(notificationAction(true, style, message));
+    dispatch(contactActions.fetchRelatedEntities(contactId));
+  },
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ContactsDetailPage)
+);

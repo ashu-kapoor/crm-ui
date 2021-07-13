@@ -1,8 +1,9 @@
 import Card from "../common/Card";
 import optyLogo from "../../../images/opty.svg";
-import { useParams } from "react-router";
-
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import { getOptyDetailFields } from "../../../helpers/optyDetailsHelper";
+import { getOpportunitiesByIds } from "../../../redux/api/selectors/opportunites.selectors";
 
 //DUMMY DATA
 
@@ -40,9 +41,8 @@ const opportunitiesData = {
 };
 
 const OptyDetails = (props) => {
-  const params = useParams();
-  const opportunityId = params.opportunityId;
-  const optyToDisplay = opportunitiesData[opportunityId];
+  const { optyArray, match } = props;
+  const optyToDisplay = optyArray[0][match.params.opportunityId];
   const fields = getOptyDetailFields(optyToDisplay);
 
   return (
@@ -68,4 +68,12 @@ const OptyDetails = (props) => {
   );
 };
 
-export default OptyDetails;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    optyArray: getOpportunitiesByIds(state, {
+      id: ownProps.match.params.opportunityId,
+    }),
+  };
+};
+
+export default withRouter(connect(mapStateToProps, null)(OptyDetails));
