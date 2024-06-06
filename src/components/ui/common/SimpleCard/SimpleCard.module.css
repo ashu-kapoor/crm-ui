@@ -1,0 +1,55 @@
+.card {
+  background-color: rgb(236, 236, 236);
+  padding: 1px;
+  margin: 5px;
+  border: 1px solid rgb(230, 227, 227);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /*min-width: 200px;*/
+  width: 85%;
+  min-height: 200px;
+  box-shadow: rgba(161, 159, 159, 0.774) 0px 4px 12px;
+}
+
+.login-card-style {
+  max-width: 380px;
+  min-height: 90%;
+}
+
+.child-container {
+  width: 100%;
+}
+
+.sticky {
+  /* position: sticky; */
+  top: -3rem;
+  position: sticky;
+  /* top: 80px; */
+  align-self: flex-start;
+}
+@media all and (max-width: 900px) and (min-width: 780px) {
+  .sticky {
+    top: -5rem;
+    position: sticky;
+    align-self: flex-start;
+  }
+}
+
+@media all and (max-width: 780px) and (min-width: 400px) {
+  .sticky {
+    top: -13rem;
+    position: sticky;
+    align-self: flex-start;
+  }
+}
+
+@media all and (max-device-width: 400px) {
+  .sticky {
+    top: -16rem;
+    position: sticky;
+    align-self: flex-start;
+  }
+}

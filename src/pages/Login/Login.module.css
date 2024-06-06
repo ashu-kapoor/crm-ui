@@ -1,0 +1,87 @@
+.home-left {
+  display: table-cell;
+  height: 100%;
+  position: relative;
+  vertical-align: middle;
+}
+
+.home-right {
+  display: table-cell;
+  vertical-align: top;
+  background-color: #c3c3c3;
+  width: 50%;
+  height: 100%;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+}
+
+.home-right-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: rgb(110, 19, 61);
+}
+
+.home-right-content ul,
+h1 {
+  width: 100%;
+}
+
+.home-right-content h1 {
+  text-align: center;
+}
+
+.home-right-content li {
+  list-style: circle;
+  font-size: medium;
+}
+
+.home-wrapper {
+  display: table;
+  width: 100%;
+  background-color: #f4f6f9;
+  padding: 0px;
+  margin: 0 auto;
+  font-size: 0.8125rem;
+  height: 100vh;
+}
+
+.home-main {
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-footer {
+  position: absolute;
+  height: 24px;
+  width: 100%;
+  clear: both;
+  text-align: center;
+  margin-top: -48px;
+}
+
+.Login-logo {
+  height: 15vmin;
+  pointer-events: none;
+  margin-bottom: 5px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Login-logo {
+    animation: Login-logo-spin infinite 10s linear;
+  }
+}
+
+@keyframes Login-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

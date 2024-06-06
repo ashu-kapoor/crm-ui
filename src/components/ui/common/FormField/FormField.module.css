@@ -1,0 +1,89 @@
+.form-control {
+  margin-bottom: 1rem;
+}
+
+.form-control input,
+.form-control label {
+  display: flex;
+  flex: 1;
+}
+
+.form-control label {
+  font-weight: bold;
+}
+
+.form-control input,
+.form-control select {
+  font: inherit;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  max-width: 100%;
+}
+
+.form-control input:focus {
+  outline: none;
+  border-color: #240370;
+  background-color: #e0d4fd;
+}
+
+.form-control a {
+  cursor: pointer;
+}
+
+.invalid input {
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}
+
+.invalid input:focus {
+  border-color: #ff8800;
+  background-color: #fbe8d2;
+}
+
+.display-only {
+  align-items: center;
+  vertical-align: middle;
+}
+
+.display-only input {
+  margin-right: 0.5rem;
+  flex: 1;
+  max-width: 10rem;
+  border: none;
+}
+
+.row-display-only {
+  align-items: center;
+  vertical-align: middle;
+  display: flex;
+}
+
+.row-display-only input {
+  margin-right: 0.5rem;
+  flex: 1;
+  max-width: 10rem;
+  border: none;
+}
+
+.row-display-only label {
+  margin-right: 0.5rem;
+  flex: 1;
+  max-width: 10rem;
+  border: none;
+}
+
+.login:first-of-type label {
+  margin-top: 2rem;
+}
+
+@media all and (max-device-width: 400px) {
+  .login input {
+    max-width: 6rem;
+  }
+}
+
+@media all and (max-width: 450px) and (min-width: 400px) {
+  .login input {
+    max-width: 10rem;
+  }
+}

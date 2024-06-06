@@ -1,0 +1,28 @@
+.card-header {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 10px;
+  background-color: rgb(111 35 43);
+  font-size: 1.5rem;
+  color: white;
+  border-radius: 5px;
+}
+.card-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 5.1rem;
+  /*top: 81px*/
+}
